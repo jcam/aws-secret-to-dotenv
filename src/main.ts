@@ -7,11 +7,7 @@ type SecretKey = string;
 type SecretValue = string;
 type Secret = { [key in SecretKey]: SecretValue }
 
-const secretsManager = new SecretsManager({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_DEFAULT_REGION
-});
+const secretsManager = new SecretsManager({});
 
 export const write = (key: SecretKey, value: SecretValue, to: PathLike) => {
     core.setSecret(value);
@@ -46,7 +42,7 @@ export function run() {
                 key
                     ? write(core.getInput('as') || key, secret[key], envPath)
                     : Object.entries(secret).forEach(([key, value]) => write(key, value, envPath));
-            } catch (error) {
+            } catch (error: any) {
                 core.setFailed(error);
             }
         })

@@ -22,7 +22,8 @@ steps:
 The following environment variables must be set as the corresponding IAM user credentials:
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
-- `AWS_DEFAULT_REGION`
+- `AWS_REGION`
+(Supports default AWS authentication: https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/loading-node-credentials-environment.html)
 
 The user must also have the following policy assigned to them:
 ```json
